@@ -54,14 +54,14 @@ import ansible_mitogen.loaders
 
 
 class Connection(ansible_mitogen.connection.Connection):
-    transport = 'ssh'
+    transport = 'stack'
     vanilla_class = ansible_mitogen.loaders.connection_loader__get(
-        'ssh',
+        'stack',
         class_only=True,
     )
 
     @staticmethod
     def _create_control_path(*args, **kwargs):
-        """Forward _create_control_path() to the implementation in ssh.py."""
+        """Forward _create_control_path() to the implementation in stack.py."""
         # https://github.com/dw/mitogen/issues/342
         return Connection.vanilla_class._create_control_path(*args, **kwargs)
